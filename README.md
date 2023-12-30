@@ -1,0 +1,5 @@
+# MCX-PACS
+
+## LICENSE
+
+[MIT](./LICENSE)
