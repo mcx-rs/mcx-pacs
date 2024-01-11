@@ -1,0 +1,5 @@
+target = "cortex-m"
+atomics = true
+atomics_feature = "atomics"
+reexport_core_peripherals = true
+reexport_interrupt = true

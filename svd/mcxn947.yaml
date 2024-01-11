@@ -1,0 +1,51 @@
+_svd: "./mcxn947.svd"
+
+_delete:
+  "*_ALIAS*"
+
+# Fixing PORT PCR for better experience
+PORT0:
+  _modify:
+    PCR0:
+      name: PCR%s
+      dim: 32
+      dimIncrement: 0x4
+      dimIndex: 0-31
+      resetValue: 0x00000000
+      resetMask: 0xFFFFFFFF
+  PCR%s:
+    _add:
+      "PV":
+        description: "Pull Value"
+        bitOffset: 2
+        bitWidth: 1
+        access: read-write
+      "PFE":
+        description: "Passive Filter Enable"
+        bitOffset: 4
+        bitWidth: 1
+        access: read-write
+    "PV":
+      "pv0": [0, "Low"]
+      "pv1": [1, "High"]
+    "PFE":
+      "pfe0": [0, "Disable"]
+      "pfe1": [1, "Enable"]
+  _delete:
+    - "PCR[123456789]"
+    - "PCR1*"
+    - "PCR2*"
+    - "PCR3*"
+_derive:
+  PORT1: PORT0
+  PORT2: PORT0
+  PORT3: PORT0
+  PORT4: PORT0
+  PORT5: PORT0
+
+ADC0:
+  _array:
+    CMDL*: {}
+    CMDH*: {}
+
+# TODO: fix MAILBOX
