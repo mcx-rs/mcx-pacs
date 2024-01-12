@@ -48,4 +48,11 @@ ADC0:
     CMDL*: {}
     CMDH*: {}
 
-# TODO: fix MAILBOX
+# MAILBOX cluster IRQ and it's registeer IRQ have same name,
+# so we need to rename the IRQ register to avoid infinite type size
+MAILBOX:
+  _clusters:
+    IRQ\[%s\]:
+      _modify:
+        IRQ:
+          name: IRQ_CPUN

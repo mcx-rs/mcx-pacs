@@ -7,7 +7,10 @@ FORM ?= form
 DEVICES := mcxn947
 YAMLS := $(foreach device, $(DEVICES), svd/$(device).yaml)
 PATCHED_SVDS := $(foreach device, $(DEVICES), svd/$(device).svd.patched)
+CARGO_LIBS := $(foreach device, $(DEVICES), pacs/$(device)/src/lib.rs)
 CARGO_TOMLS := $(foreach device, $(DEVICES), pacs/$(device)/Cargo.toml)
+
+.NOTINTERMEDIATE: $(CARGO_LIBS)
 
 svd/%.svd.patched: svd/%.yaml svd/%.svd
 	$(SVDTOOLS) patch $<
@@ -24,6 +27,8 @@ pacs/%/src/lib.rs: svd/%.svd.patched
 pacs/%/Cargo.toml: Cargo.toml.template pacs/%/src/lib.rs
 	sed 's/@NAME@/$*/g' Cargo.toml.template > $@
 	cargo fmt --manifest-path $@
+
+pacs/%/src/lib.rs: 
 
 crates: $(CARGO_TOMLS)
 
