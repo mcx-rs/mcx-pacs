@@ -11,6 +11,12 @@ CARGO_LIBS := $(foreach device, $(DEVICES), pacs/$(device)/src/lib.rs)
 CARGO_TOMLS := $(foreach device, $(DEVICES), pacs/$(device)/Cargo.toml)
 
 .NOTINTERMEDIATE: $(CARGO_LIBS)
+.PHONY: install_tools patch crates clean-patch clean-crates clean
+
+install_tools:
+	cargo install svdtools@0.3.8
+	cargo install svd2rust@0.31.5
+	cargo install form@0.11.1
 
 svd/%.svd.patched: svd/%.yaml svd/%.svd
 	$(SVDTOOLS) patch $<

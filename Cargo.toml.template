@@ -5,10 +5,11 @@ version = "0.0.1"
 authors = ["Logiase Song <logiase.song@gmail.com>"]
 description = "Peripherals Access Crate for NXP @NAME@"
 repository = "https://github.com/mcx-rs/mcx-pacs"
-readme = "README.md"
+readme = "../../README.md"
 keywords = ["nxp", "mcx", "no_std", "embedded"]
 categories = ["embedded", "no-std"]
 license = "MIT"
+homepage = "https://github.com/mcx-rs/mcx-pacs"
 
 [dependencies]
 critical-section = { version = "1.0", optional = true }
