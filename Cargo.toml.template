@@ -18,4 +18,5 @@ cortex-m-rt = { version = ">=0.7.3", optional = true }
 vcell = "0.1.3"
 
 [features]
+default = ["rt", "critical-section"]
 rt = ["cortex-m-rt/device"]
